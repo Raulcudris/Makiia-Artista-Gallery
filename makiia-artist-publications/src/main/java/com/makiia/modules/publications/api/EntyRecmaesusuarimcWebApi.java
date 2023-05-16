@@ -18,7 +18,7 @@ import java.util.List;
 
 @Log4j2
 @RestController
-@RequestMapping(value = "/Publications", produces = {MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(value = "/publications", produces = {MediaType.APPLICATION_JSON_VALUE})
 public class EntyRecmaesusuarimcWebApi {
     @Autowired
     private EntyRecgaleriarecmaService service;
