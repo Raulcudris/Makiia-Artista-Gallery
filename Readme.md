@@ -1,4 +1,4 @@
-# MakiiaArtistas-MicroSerivicio Galeria
+# MakiiaArtistas-MicroServicio Galeria
 Makiia Artist Galeria
 
 Makiia-Artist-Gallery
