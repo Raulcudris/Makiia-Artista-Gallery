@@ -1,6 +1,6 @@
-# MakiiaArtistas-MicroSerivicio Publicaciones
-Makiia Artist Publications
+# MakiiaArtistas-MicroSerivicio Galeria
+Makiia Artist Galeria
 
-Makiia-Artist-Publications
+Makiia-Artist-Gallery
 
--Microservicio Publicaciones del Artista
+-Microservicio Galeria del Artista
