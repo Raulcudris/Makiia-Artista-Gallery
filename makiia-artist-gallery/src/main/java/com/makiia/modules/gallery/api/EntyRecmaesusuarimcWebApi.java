@@ -57,6 +57,13 @@ public class EntyRecmaesusuarimcWebApi {
             throws EBusinessException, MicroEventException {
         return new ResponseEntity<>(service.updateAll(dto), HttpStatus.CREATED);
     }
+
+    @PatchMapping("drawingping")
+    @ApiOperation(httpMethod = ApiConstants.PATCH_HTTP, value = ApiConstants.PATCH_DESC, notes = "")
+    public String changestatus(@RequestBody List<EntyDeleteDto> dto) throws EBusinessException, MicroEventException {
+        return service.changestatusAll(dto);
+    }
+
     @DeleteMapping("delete")
     @ApiOperation(httpMethod = ApiConstants.DELETE_HTTP, value = ApiConstants.DELETE_DESC, notes = "")
     public String delete(@RequestBody List<EntyDeleteDto> dto) throws EBusinessException, MicroEventException {

@@ -11,7 +11,7 @@ public interface EntyRecgaleriarecmaRepository extends JpaRepository<EntyRecgale
         String FILTER_USUARIO_RECUNIKEYREGl_QUERY = "select c from EntyRecgaleriarecma c  where c.recUnikeyRegl  = ?1";
         @Query(value = FILTER_USUARIO_RECUNIKEYREGl_QUERY)
         Page<EntyRecgaleriarecma> findByRecUnikeyRegl(Integer parameter, Pageable pageable);
-        String FILTER_USUARIO_RECNROREGREGL_QUERY = "select c from EntyRecgaleriarecma c where UPPER(c.apjNroregAphp) like concat('%',upper(?1),'%')";
+        String FILTER_USUARIO_RECNROREGREGL_QUERY = "select c from EntyRecgaleriarecma c where UPPER(c.apjNroregAphp) like concat('%',upper(?1),'%') and c.recGrprecRegr ='103' and c.recDrwpinRegl='1' order by c.recRllaveRegl DESC";
         @Query(value = FILTER_USUARIO_RECNROREGREGL_QUERY)
         Page<EntyRecgaleriarecma> findByRecNroregRegl(String filter, Pageable pageable);
 

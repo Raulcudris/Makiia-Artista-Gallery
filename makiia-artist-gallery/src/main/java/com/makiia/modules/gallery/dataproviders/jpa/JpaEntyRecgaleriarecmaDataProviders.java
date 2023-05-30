@@ -36,28 +36,6 @@ public class JpaEntyRecgaleriarecmaDataProviders implements IjpaEntyRecgaleriare
     @Qualifier("entyRecgaleriarecmaDtoToEntityTranslate")
     private Translator<EntyRecgaleriarecmaDto, EntyRecgaleriarecma>dtoToEntityTranslate;
 
-   /* @Override
-    public List<EntyRecmaesusuarimcDto> getAll() throws EBusinessException {
-        List<EntyRecmaesusuarimcDto> dtos = new ArrayList<>();
-        try {
-            List<EntyRecmaesusuarimc> responses = (List<EntyRecmaesusuarimc>) repository.findAll();
-
-            if (!responses.isEmpty()) {
-                for (EntyRecmaesusuarimc response : responses) {
-                    dtos.add(saveResponseTranslate.translate(response));
-                }
-            }
-
-            return dtos;
-        } catch (PersistenceException | DataAccessException e) {
-            throw ExceptionBuilder.builder()
-                    .withMessage(SearchMessages.SEARCH_ERROR_DESCRIPTION)
-                    .withCode(SearchMessages.SEARCH_ERROR_ID)
-                    .withParentException(e)
-                    .buildBusinessException();
-        }
-    }*/
-
     @Override
     public EntyRecgaleriarecmaResponse getAll() throws EBusinessException {
         try {
@@ -224,6 +202,11 @@ public class JpaEntyRecgaleriarecmaDataProviders implements IjpaEntyRecgaleriare
                             ? entity.getRecOrdvisRegl()
                             :old.getRecOrdvisRegl());
 
+            old.setRecDrwpinRegl(
+                    Objects.nonNull(dto.getRecDrwpinRegl())&& !entity.getRecDrwpinRegl().equals(0)
+                            ? entity.getRecDrwpinRegl()
+                            :old.getRecDrwpinRegl());
+
             old.setRecRecax1Regl(
                     Objects.nonNull(dto.getRecRecax1Regl())&& !entity.getRecRecax1Regl().isEmpty()
                             ? entity.getRecRecax1Regl()
@@ -295,6 +278,7 @@ public class JpaEntyRecgaleriarecmaDataProviders implements IjpaEntyRecgaleriare
         dto.setRecTiprecRegl(entyRecgaleriarecma.getRecTiprecRegl());
         dto.setRecNomrecRegl(entyRecgaleriarecma.getRecNomrecRegl());
         dto.setRecOrdvisRegl(entyRecgaleriarecma.getRecOrdvisRegl());
+        dto.setRecDrwpinRegl(entyRecgaleriarecma.getRecDrwpinRegl());
         dto.setRecRecax1Regl(entyRecgaleriarecma.getRecRecax1Regl());
         dto.setRecRecax2Regl(entyRecgaleriarecma.getRecRecax2Regl());
         dto.setRecRecax3Regl(entyRecgaleriarecma.getRecRecax3Regl());

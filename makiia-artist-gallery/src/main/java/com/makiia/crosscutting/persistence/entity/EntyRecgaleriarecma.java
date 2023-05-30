@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
+import java.time.LocalDate;
 
 @Data
 @Entity
@@ -46,10 +47,13 @@ public class EntyRecgaleriarecma implements Serializable {
     @Basic(optional = false)
     @Column(name = "rec_nomrec_regl")
     private String  recNomrecRegl;
-
     @Basic(optional = false)
     @Column(name = "rec_ordvis_regl")
     private Integer  recOrdvisRegl;
+
+    @Basic(optional = false)
+    @Column(name = "rec_drwpin_Regl")
+    private Integer  recDrwpinRegl;
 
     @Basic(optional = false)
     @Column(name = "rec_recax1_regl")
@@ -66,7 +70,7 @@ public class EntyRecgaleriarecma implements Serializable {
     @Basic(optional = false)
     @Column(name = "rec_fecrec_regl")
     @JsonFormat(pattern="yyyy-MM-dd")
-    private Date  recFecrecRegl;
+    private LocalDate recFecrecRegl;
 
     @Basic(optional = false)
     @Column(name = "rec_horrec_regl")
@@ -78,6 +82,6 @@ public class EntyRecgaleriarecma implements Serializable {
 
     @Basic(optional = false)
     @Column(name = "rec_estreg_regl")
-    private String  RecEstregRegl;
+    private String  recEstregRegl;
 
 }
