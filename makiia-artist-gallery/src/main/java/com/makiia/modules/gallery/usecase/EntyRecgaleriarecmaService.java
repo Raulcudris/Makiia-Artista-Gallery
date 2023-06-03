@@ -1,5 +1,6 @@
 package com.makiia.modules.gallery.usecase;
 import com.makiia.crosscutting.domain.model.EntyDeleteDto;
+import com.makiia.crosscutting.domain.model.EntyGaleryUtiliDto;
 import com.makiia.crosscutting.domain.model.EntyRecgaleriarecmaDto;
 import com.makiia.crosscutting.domain.model.EntyRecgaleriarecmaResponse;
 import com.makiia.crosscutting.exceptions.ExceptionBuilder;
@@ -8,7 +9,6 @@ import com.makiia.crosscutting.messages.SearchMessages;
 import com.makiia.modules.bus.services.UseCase;
 import com.makiia.modules.bus.services.UsecaseServices;
 import com.makiia.modules.gallery.dataproviders.jpa.JpaEntyRecgaleriarecmaDataProviders;
-import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import javax.annotation.PostConstruct;
@@ -17,7 +17,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-@Log4j2
+
 @UseCase
 public class EntyRecgaleriarecmaService extends UsecaseServices<EntyRecgaleriarecmaDto, JpaEntyRecgaleriarecmaDataProviders>
 {
@@ -80,16 +80,19 @@ public class EntyRecgaleriarecmaService extends UsecaseServices<EntyRecgaleriare
         }
     }
 
-    public String changestatusAll(List<EntyDeleteDto> dto) throws EBusinessException {
+    public String changestatusAll(List<EntyGaleryUtiliDto> dto) throws EBusinessException {
         try {
             dateNowWhitTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmmss"));
             ordeView = Long.valueOf(dateNowWhitTime);
             EntyRecgaleriarecmaDto rspto = new EntyRecgaleriarecmaDto();
 
-            for (EntyDeleteDto dtox : dto) {
+            for (EntyGaleryUtiliDto dtox : dto) {
                 rspto = this.ijpaDataProvider.get(dtox.getRecPKey());
-                rspto.setRecRllaveRegl(ordeView);
-                rspto.setRecDrwpinRegl(dtox.getRecDrawPing());
+                if(dtox.getRecDrawPing() == 1)
+                {
+                    rspto.setRecRllaveRegl(ordeView);
+                }          
+                rspto.setRecDrwpinRegl(dtox.getRecDrawPing());           
                 this.ijpaDataProvider.update(dtox.getRecPKey(),rspto);
             }
             return "OK";

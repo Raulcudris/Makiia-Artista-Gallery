@@ -1,5 +1,5 @@
 server:
-  port: 6070
+  port: 6071
   servlet:
     contextPath: /api
 

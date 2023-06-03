@@ -2,13 +2,13 @@ package com.makiia.modules.gallery.api;
 import com.makiia.crosscutting.domain.constants.ApiConstants;
 import com.makiia.crosscutting.domain.constants.Constants;
 import com.makiia.crosscutting.domain.model.EntyDeleteDto;
+import com.makiia.crosscutting.domain.model.EntyGaleryUtiliDto;
 import com.makiia.crosscutting.domain.model.EntyRecgaleriarecmaDto;
 import com.makiia.crosscutting.domain.model.EntyRecgaleriarecmaResponse;
 import com.makiia.crosscutting.exceptions.Main.EBusinessException;
 import com.makiia.crosscutting.exceptions.MicroEventException;
 import com.makiia.modules.gallery.usecase.EntyRecgaleriarecmaService;
 import io.swagger.annotations.ApiOperation;
-import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,7 +16,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-@Log4j2
 @RestController
 @RequestMapping(value = "/gallery", produces = {MediaType.APPLICATION_JSON_VALUE})
 public class EntyRecmaesusuarimcWebApi {
@@ -60,7 +59,7 @@ public class EntyRecmaesusuarimcWebApi {
 
     @PatchMapping("drawingping")
     @ApiOperation(httpMethod = ApiConstants.PATCH_HTTP, value = ApiConstants.PATCH_DESC, notes = "")
-    public String changestatus(@RequestBody List<EntyDeleteDto> dto) throws EBusinessException, MicroEventException {
+    public String changestatus(@RequestBody List<EntyGaleryUtiliDto> dto) throws EBusinessException, MicroEventException {
         return service.changestatusAll(dto);
     }
 
