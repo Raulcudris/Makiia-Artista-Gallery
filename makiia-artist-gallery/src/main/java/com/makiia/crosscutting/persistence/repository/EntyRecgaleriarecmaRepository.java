@@ -1,9 +1,10 @@
 package com.makiia.crosscutting.persistence.repository;
-import com.makiia.crosscutting.persistence.entity.EntyRecgaleriarecma;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+
+import com.makiia.crosscutting.persistence.entity.EntyRecgaleriarecma;
 
 public interface EntyRecgaleriarecmaRepository extends JpaRepository<EntyRecgaleriarecma,Integer>
 {

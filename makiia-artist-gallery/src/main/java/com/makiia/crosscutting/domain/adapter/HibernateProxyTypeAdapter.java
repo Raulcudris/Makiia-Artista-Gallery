@@ -1,15 +1,16 @@
 package com.makiia.crosscutting.domain.adapter;
 
+import java.io.IOException;
+
+import org.hibernate.Hibernate;
+import org.hibernate.proxy.HibernateProxy;
+
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import org.hibernate.Hibernate;
-import org.hibernate.proxy.HibernateProxy;
-
-import java.io.IOException;
 
 @SuppressWarnings("unchecked")
 public class HibernateProxyTypeAdapter extends TypeAdapter<HibernateProxy> {
@@ -34,7 +35,7 @@ public class HibernateProxyTypeAdapter extends TypeAdapter<HibernateProxy> {
         throw new UnsupportedOperationException("Not supported");
     }
 
-    @SuppressWarnings({"rawtypes", "unchecked"})
+    @SuppressWarnings({"rawtypes"})
     @Override
     public void write(JsonWriter out, HibernateProxy value) throws IOException {
         if (value == null) {

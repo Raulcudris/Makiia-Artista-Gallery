@@ -1,7 +1,8 @@
 package com.makiia.modules.bus.contracts;
+import java.util.List;
+
 import com.makiia.crosscutting.domain.model.EntyRecgaleriarecmaResponse;
 import com.makiia.crosscutting.exceptions.Main.EBusinessException;
-import java.util.List;
 
 public interface  IjpaDataProviders<T> {
 

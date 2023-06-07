@@ -1,26 +1,40 @@
 package com.makiia.modules.gallery.api;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.makiia.crosscutting.domain.constants.ApiConstants;
 import com.makiia.crosscutting.domain.constants.Constants;
 import com.makiia.crosscutting.domain.model.EntyDeleteDto;
 import com.makiia.crosscutting.domain.model.EntyGaleryUtiliDto;
 import com.makiia.crosscutting.domain.model.EntyRecgaleriarecmaDto;
 import com.makiia.crosscutting.domain.model.EntyRecgaleriarecmaResponse;
-import com.makiia.crosscutting.exceptions.Main.EBusinessException;
 import com.makiia.crosscutting.exceptions.MicroEventException;
+import com.makiia.crosscutting.exceptions.Main.EBusinessException;
 import com.makiia.modules.gallery.usecase.EntyRecgaleriarecmaService;
+
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/gallery", produces = {MediaType.APPLICATION_JSON_VALUE})
 public class EntyRecmaesusuarimcWebApi {
-    @Autowired
-    private EntyRecgaleriarecmaService service;
+    @Autowired 
+    public EntyRecgaleriarecmaService service;
+
+
     @GetMapping("getall")
     @ApiOperation(httpMethod = ApiConstants.GET_HTTP, value = ApiConstants.GET_DESC, notes = "")
     public ResponseEntity<EntyRecgaleriarecmaResponse> getAll()

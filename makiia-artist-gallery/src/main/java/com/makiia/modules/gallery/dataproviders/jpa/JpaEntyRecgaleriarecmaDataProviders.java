@@ -1,4 +1,18 @@
 package com.makiia.modules.gallery.dataproviders.jpa;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
+import javax.persistence.PersistenceException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.dao.DataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+
 import com.makiia.crosscutting.domain.model.EntyRecgaleriarecmaDto;
 import com.makiia.crosscutting.domain.model.EntyRecgaleriarecmaResponse;
 import com.makiia.crosscutting.domain.model.PaginationResponse;
@@ -10,20 +24,7 @@ import com.makiia.crosscutting.patterns.Translator;
 import com.makiia.crosscutting.persistence.entity.EntyRecgaleriarecma;
 import com.makiia.crosscutting.persistence.repository.EntyRecgaleriarecmaRepository;
 import com.makiia.modules.gallery.dataproviders.IjpaEntyRecgaleriarecmaDataProviders;
-import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.dao.DataAccessException;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import javax.persistence.PersistenceException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
-@Log4j2
 @DataProvider
 public class JpaEntyRecgaleriarecmaDataProviders implements IjpaEntyRecgaleriarecmaDataProviders {
 

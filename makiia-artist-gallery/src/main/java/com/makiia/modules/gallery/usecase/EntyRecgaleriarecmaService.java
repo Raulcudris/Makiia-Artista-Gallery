@@ -1,4 +1,17 @@
 package com.makiia.modules.gallery.usecase;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+import javax.persistence.PersistenceException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
+
 import com.makiia.crosscutting.domain.model.EntyDeleteDto;
 import com.makiia.crosscutting.domain.model.EntyGaleryUtiliDto;
 import com.makiia.crosscutting.domain.model.EntyRecgaleriarecmaDto;
@@ -6,49 +19,52 @@ import com.makiia.crosscutting.domain.model.EntyRecgaleriarecmaResponse;
 import com.makiia.crosscutting.exceptions.ExceptionBuilder;
 import com.makiia.crosscutting.exceptions.Main.EBusinessException;
 import com.makiia.crosscutting.messages.SearchMessages;
-import com.makiia.modules.bus.services.UseCase;
 import com.makiia.modules.bus.services.UsecaseServices;
 import com.makiia.modules.gallery.dataproviders.jpa.JpaEntyRecgaleriarecmaDataProviders;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
-import javax.annotation.PostConstruct;
-import javax.persistence.PersistenceException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
 
-@UseCase
+@Repository
+@Service
 public class EntyRecgaleriarecmaService extends UsecaseServices<EntyRecgaleriarecmaDto, JpaEntyRecgaleriarecmaDataProviders>
 {
     @Autowired
-    private JpaEntyRecgaleriarecmaDataProviders jpaDataProviders;
+    public JpaEntyRecgaleriarecmaDataProviders jpaDataProviders;
+
     @PostConstruct
     public void init(){
         this.ijpaDataProvider = jpaDataProviders;
     }
 
-    public LocalDate localDateNow;
+    private String localYear;
+    private LocalDate localDateNow;
     private Double localTimeNow;
     private String dateNowWhitTime;
     private String timeNowHourMin;
     private Long ordeView;
+    private int year;
 
     public EntyRecgaleriarecmaResponse saveBefore(EntyRecgaleriarecmaResponse dto) throws EBusinessException {
         try{
             List<EntyRecgaleriarecmaDto>  dtoAux = this.ijpaDataProvider.save(dto.getRspData());
+            localYear = LocalDate.now().format(DateTimeFormatter.ofPattern("yy"));
             localDateNow = LocalDate.parse(LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
             dateNowWhitTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmmss"));
             timeNowHourMin = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH.mm"));
             localTimeNow = Double.valueOf(timeNowHourMin);
             ordeView = Long.valueOf(dateNowWhitTime);
+            year = Integer.parseInt(localYear);
+
             for (EntyRecgaleriarecmaDto dtox : dtoAux){
-                dtox.setRecFecrecRegl(localDateNow);
-                dtox.setRecHorrecRegl(localTimeNow);
-                dtox.setRecOrdvisRegl(1);
-                dtox.setRecDrwpinRegl(1);
-                dtox.setRecRllaveRegl(ordeView);
-            }
+                    dtox.setRecNroregRegl(year+""+dtox.getRecUnikeyRegl());
+                    dtox.setRecFecrecRegl(localDateNow);
+                    dtox.setRecHorrecRegl(localTimeNow);
+                    dtox.setRecOrdvisRegl(1);
+                    dtox.setRecDrwpinRegl(1);
+                    dtox.setRecRllaveRegl(ordeView);
+             }
+             dto.setRspValue("OK");
+             dto.setRspMessage("OK");             
+             dto.setRspParentKey("NA");             
+             dto.setRspAppKey("NA");
             dtoAux = this.ijpaDataProvider.save(dtoAux);
             dto.setRspData(dtoAux);
             return dto;
