@@ -1,4 +1,4 @@
-package com.makiia.modules.bus.services;
+package com.makiia.modules.gallery.services;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,7 +14,7 @@ import com.makiia.crosscutting.domain.model.traceability.TransactionFile;
 import com.makiia.crosscutting.exceptions.ExceptionBuilder;
 import com.makiia.crosscutting.exceptions.MicroEventException;
 import com.makiia.crosscutting.exceptions.Main.EBusinessException;
-import com.makiia.modules.bus.contracts.IjpaDataProviders;
+import com.makiia.modules.gallery.contracts.IjpaDataProviders;
 
 public class UsecaseServices <T, K> {
 
@@ -39,6 +39,7 @@ public class UsecaseServices <T, K> {
      * @throws EBusinessException  excepcion
      * @throws MicroEventException excepcion
      */
+    
     public EntyRecgaleriarecmaResponse getAll() throws EBusinessException, MicroEventException {
         String transactionalId = UUID.randomUUID().toString();
 
@@ -61,7 +62,7 @@ public class UsecaseServices <T, K> {
                     .buildBusinessException();
         }
     }
-
+    
     /**
      * obtiene una lista de entidades dto Response Paginacion
      *
@@ -69,7 +70,7 @@ public class UsecaseServices <T, K> {
      * @throws EBusinessException  excepcion
      * @throws MicroEventException excepcion
      */
-    public EntyRecgaleriarecmaResponse getAll(int currentPage , int pageSize, int parameter , String filter) throws EBusinessException, MicroEventException {
+    public EntyRecgaleriarecmaResponse getAll(int currentPage , int pageSize, String parameter , String filter) throws EBusinessException, MicroEventException {
         String transactionalId = UUID.randomUUID().toString();
 
         try {

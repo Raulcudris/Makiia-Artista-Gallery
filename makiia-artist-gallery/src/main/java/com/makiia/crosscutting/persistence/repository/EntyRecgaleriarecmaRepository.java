@@ -8,13 +8,14 @@ import com.makiia.crosscutting.persistence.entity.EntyRecgaleriarecma;
 
 public interface EntyRecgaleriarecmaRepository extends JpaRepository<EntyRecgaleriarecma,Integer>
 {
-        String FILTER_USUARIO_RECUNIKEYREGl_QUERY = "select c from EntyRecgaleriarecma c  where c.recUnikeyRegl  = ?1";
-        @Query(value = FILTER_USUARIO_RECUNIKEYREGl_QUERY)
-        Page<EntyRecgaleriarecma> findByRecUnikeyRegl(Integer parameter, Pageable pageable);
-        String FILTER_USUARIO_RECNROREGREGL_QUERY = "select c from EntyRecgaleriarecma c where UPPER(c.apjNroregAphp) "+
-                                                    "like concat('%',upper(?1),'%') and c.recGrprecRegr ='103' "+
-                                                    "order by c.recDrwpinRegl, c.recRllaveRegl DESC";
-        @Query(value = FILTER_USUARIO_RECNROREGREGL_QUERY)
-        Page<EntyRecgaleriarecma> findByRecNroregRegl(String filter, Pageable pageable);
+        String FILTER_ID_HOMEPAGE_ARTIST_QUERY = "select c from EntyRecgaleriarecma c where UPPER(c.apjNroregAphp) "+
+                                                 "like concat('%',upper(?1),'%') and c.recGrprecRegr ='103' "+
+                                                 "order by c.recDrwpinRegl, c.recRllaveRegl DESC";
+        @Query(value = FILTER_ID_HOMEPAGE_ARTIST_QUERY)
+        Page<EntyRecgaleriarecma> findByIdHomePageArtist(String filter, Pageable pageable);
+        
+        String FILTER_ID_RECUNIKEYREGl_QUERY = "select c from EntyRecgaleriarecma c  where c.recUnikeyRegl  = ?1";
+        @Query(value = FILTER_ID_RECUNIKEYREGl_QUERY)
+        Page<EntyRecgaleriarecma> findByRecUnikeyRegl(Integer filter, Pageable pageable);
 
 }

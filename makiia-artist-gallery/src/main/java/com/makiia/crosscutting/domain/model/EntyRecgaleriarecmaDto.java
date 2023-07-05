@@ -15,7 +15,6 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EntyRecgaleriarecmaDto {
-
     private Integer recUnikeyRegl;
     private String  recNroregRegl;
     private String  apjNroregAphp;
@@ -24,7 +23,6 @@ public class EntyRecgaleriarecmaDto {
     private String  recTiprecRegl;
     private String  recNomrecRegl;
     private Integer recOrdvisRegl;
-
     private Integer  recDrwpinRegl;
     private String  recRecax1Regl;
     private String  recRecax2Regl;

@@ -11,10 +11,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class EntyRecgaleriarecmaResponse {
-    private  String rspValue ;
-    private  String rspMessage ;
-    private  String rspParentKey ;
-    private  String rspAppKey ;
+    @Builder.Default
+    private  String rspValue ="OK";
+    @Builder.Default
+    private  String rspMessage ="OK";
+    @Builder.Default
+    private  String rspParentKey ="NA";
+    @Builder.Default
+    private  String rspAppKey ="NA";
+    @Builder.Default
     private  PaginationResponse rspPagination = new PaginationResponse();
     private  List<EntyRecgaleriarecmaDto> rspData;
 

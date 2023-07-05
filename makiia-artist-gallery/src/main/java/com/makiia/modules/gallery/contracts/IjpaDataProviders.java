@@ -1,4 +1,4 @@
-package com.makiia.modules.bus.contracts;
+package com.makiia.modules.gallery.contracts;
 import java.util.List;
 
 import com.makiia.crosscutting.domain.model.EntyRecgaleriarecmaResponse;
@@ -8,7 +8,7 @@ public interface  IjpaDataProviders<T> {
 
     //List<T> getAll() throws EBusinessException;
     EntyRecgaleriarecmaResponse getAll() throws  EBusinessException;
-    EntyRecgaleriarecmaResponse getAll (int currentPage , int pageSize, int parameter, String filter) throws EBusinessException;
+    EntyRecgaleriarecmaResponse getAll (int currentPage , int pageSize, String parameter, String filter) throws EBusinessException;
     T get(Integer id) throws EBusinessException;
     T save(T dto) throws EBusinessException;
     List<T> save(List<T> dto) throws EBusinessException;

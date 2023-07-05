@@ -58,7 +58,7 @@ public class JpaEntyRecgaleriarecmaDataProviders implements IjpaEntyRecgaleriare
             currentPage = currentPage + 1;
             String nextPageUrl = "LocalHost";
             String previousPageUrl = "LocalHost";
-            response.setRspPagination(headResponse(currentPage, totalPageSize, ResponsePage.getTotalElements(), ResponsePage.getTotalPages(), ResponsePage.hasNext(), ResponsePage.hasPrevious(), nextPageUrl, previousPageUrl));
+            response.setRspPagination(headResponse(currentPage, content.size(), ResponsePage.getTotalElements(), ResponsePage.getTotalPages(), ResponsePage.hasNext(), ResponsePage.hasPrevious(), nextPageUrl, previousPageUrl));
             response.setRspData(content);
             return response;
 
@@ -73,15 +73,19 @@ public class JpaEntyRecgaleriarecmaDataProviders implements IjpaEntyRecgaleriare
 
 
     @Override
-    public EntyRecgaleriarecmaResponse getAll(int currentPage , int totalPageSize , int parameter, String filter) throws EBusinessException {
+    public EntyRecgaleriarecmaResponse getAll(int currentPage , int totalPageSize , String parameter, String filter) throws EBusinessException {
         try {
             currentPage = currentPage - 1;
             Pageable pageable = PageRequest.of(currentPage, totalPageSize);
             Page<EntyRecgaleriarecma> ResponsePage = null;
-            if (parameter == 0) {
-                ResponsePage = repository.findByRecNroregRegl(filter, pageable);
-            }else {
-                ResponsePage = repository.findByRecUnikeyRegl(parameter,pageable);
+
+            if (parameter.equals("FKEY")) {
+                ResponsePage = repository.findByIdHomePageArtist(filter, pageable);
+            }
+            else
+            {
+                // PKEY
+                ResponsePage = repository.findByRecUnikeyRegl(Integer.parseInt(filter),pageable);
             }
 
             List<EntyRecgaleriarecma> ListPage = ResponsePage.getContent();
@@ -94,7 +98,13 @@ public class JpaEntyRecgaleriarecmaDataProviders implements IjpaEntyRecgaleriare
             currentPage = currentPage + 1;
             String nextPageUrl = "LocalHost";
             String previousPageUrl = "LocalHost";
-            response.setRspPagination(headResponse(currentPage, totalPageSize, ResponsePage.getTotalElements(), ResponsePage.getTotalPages(), ResponsePage.hasNext(), ResponsePage.hasPrevious(), nextPageUrl, previousPageUrl));
+            response.setRspPagination(headResponse(currentPage, content.size(), 
+                                                   ResponsePage.getTotalElements(), 
+                                                   ResponsePage.getTotalPages(), 
+                                                   ResponsePage.hasNext(), 
+                                                   ResponsePage.hasPrevious(), 
+                                                   nextPageUrl, 
+                                                   previousPageUrl));
             response.setRspData(content);
             return response;
 

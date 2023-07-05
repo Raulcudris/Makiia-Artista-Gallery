@@ -19,8 +19,8 @@ import com.makiia.crosscutting.domain.model.EntyRecgaleriarecmaResponse;
 import com.makiia.crosscutting.exceptions.ExceptionBuilder;
 import com.makiia.crosscutting.exceptions.Main.EBusinessException;
 import com.makiia.crosscutting.messages.SearchMessages;
-import com.makiia.modules.bus.services.UsecaseServices;
 import com.makiia.modules.gallery.dataproviders.jpa.JpaEntyRecgaleriarecmaDataProviders;
+import com.makiia.modules.gallery.services.UsecaseServices;
 
 @Repository
 @Service
@@ -84,6 +84,10 @@ public class EntyRecgaleriarecmaService extends UsecaseServices<EntyRecgaleriare
             for (EntyRecgaleriarecmaDto dtox : dtoAux){
                 dtox = this.ijpaDataProvider.update(dtox.getRecUnikeyRegl(),dtox);
             }
+            dto.setRspValue("OK");
+            dto.setRspMessage("OK");             
+            dto.setRspParentKey("NA");             
+            dto.setRspAppKey("NA");
             dto.setRspData(dtoAux);
             return dto;
 
